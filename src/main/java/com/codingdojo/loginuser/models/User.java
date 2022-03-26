@@ -39,6 +39,9 @@ public class User {
     @Size(min=8, max=128, message="Confirm Password must be between 8 and 128 characters")
     private String confirm;
 
+    @OneToMany(mappedBy="user", fetch=FetchType.LAZY)
+    private List<Book> Books;
+
     public User() {}
 
     public User(String userName, String email, String password) {
@@ -85,6 +88,14 @@ public class User {
 
     public void setConfirm(String confirm) {
         this.confirm = confirm;
+    }
+
+    public List<Book> getBooks() {
+        return Books;
+    }
+
+    public void setBooks(List<Book> books) {
+        Books = books;
     }
 
     public String information(){

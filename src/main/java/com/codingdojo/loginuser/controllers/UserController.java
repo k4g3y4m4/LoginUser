@@ -1,7 +1,9 @@
 package com.codingdojo.loginuser.controllers;
 
+import com.codingdojo.loginuser.models.Book;
 import com.codingdojo.loginuser.models.LoginUser;
 import com.codingdojo.loginuser.models.User;
+import com.codingdojo.loginuser.services.BookService;
 import com.codingdojo.loginuser.services.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,9 +15,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
-public class HomeController {
+public class UserController {
 
     @Autowired
     private LoginService loginService;
@@ -27,14 +30,6 @@ public class HomeController {
         return "index.jsp";
     }
 
-    @GetMapping("/dashboard")
-    public String dashboard(HttpSession session, Model model) {
-        if(session.getAttribute("user") == null) {
-            return "redirect:/";
-        }
-        model.addAttribute("user", session.getAttribute("user"));
-        return "dashboard.jsp";
-    }
 
     @GetMapping("/logout")
     public String logout(HttpSession session) {
@@ -54,7 +49,7 @@ public class HomeController {
             return "index.jsp";
         }
         session.setAttribute("user", user);
-        return "redirect:/dashboard";
+        return "redirect:/books";
     }
 
     @PostMapping("/login")
@@ -67,7 +62,7 @@ public class HomeController {
             return "index.jsp";
         }
         session.setAttribute("user", user);
-        return "redirect:/dashboard";
+        return "redirect:/books";
     }
 
 }

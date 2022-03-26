@@ -11,8 +11,8 @@ import org.springframework.validation.BindingResult;
 @Service
 public class LoginService {
 
-@Autowired
-UserRepository userRepository;
+    @Autowired
+    UserRepository userRepository;
 
     public User register(User newUser, BindingResult result) {
         if (userRepository.findByEmail(newUser.getEmail()) != null) {
