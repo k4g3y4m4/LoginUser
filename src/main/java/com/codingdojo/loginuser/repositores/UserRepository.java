@@ -1,0 +1,16 @@
+package com.codingdojo.loginuser.repositores;
+
+import com.codingdojo.loginuser.models.User;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+@Repository
+public interface UserRepository extends CrudRepository<User, Long> {
+
+    //find by email
+    User findByEmail(String email);
+
+
+}
